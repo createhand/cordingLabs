@@ -26,10 +26,10 @@ public class DBEncExample {
 //		String dbUser = "glnuser_main";
 //		String dbScheme = "glndb_payment";
 //		String dbUser = "glnuser_payment";
-		String dbScheme = "glndb_portal";
-		String dbUser = "glnuser_portal";
-//		String dbScheme = "glndb_settlement";
-//		String dbUser = "glnuser_settlement";
+//		String dbScheme = "glndb_portal";
+//		String dbUser = "glnuser_portal";
+		String dbScheme = "glndb_settlement";
+		String dbUser = "glnuser_settlement";
 		String dbPwd = "Gln1234!";
 		
 		
@@ -40,24 +40,24 @@ public class DBEncExample {
 		boolean common = true;
 		
 		
-		String masterPubIp = "172.16.3.11";
-		String slavePubIp = "172.16.3.11";
+		String masterPubIp = "172.16.13.38";
+		String slavePubIp = "172.16.13.38";
 		
 		String masterPort = "33060";
 		String slavePort = "33060";
 		
-		//암호화 할 내용(master DB)
+		//�븫�샇�솕 �븷 �궡�슜(master DB)
 		String masterDbPubUrl = "jdbc:mysql://"+masterPubIp+":"+masterPort+"/"+dbScheme+"?autoCommit=true&autoReconnect=true&useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=false&serverTimezone=GMT";
-		//암호화 할 내용(slave DB)
+		//�븫�샇�솕 �븷 �궡�슜(slave DB)
 		String slaveDbPubUrl = "jdbc:mysql://"+slavePubIp+":"+slavePort+"/"+dbScheme+"?autoCommit=true&autoReconnect=true&useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=false&serverTimezone=GMT";
 		
 		StandardPBEStringEncryptor pbeEnc = new StandardPBEStringEncryptor();
-		//알고리즘
+		//�븣怨좊━利�
 		pbeEnc.setAlgorithm(ALGORITHM);
-		//암호화 키
+		//�븫�샇�솕 �궎
 		pbeEnc.setPassword(ENC_PASSWORD);
 		
-		//암호화 한 내용(master DB)
+		//�븫�샇�솕 �븳 �궡�슜(master DB)
 		System.out.println("plain(" + masterDbPubUrl + ")");
 		System.out.println("");
 		System.out.println("===================================================================");
@@ -182,7 +182,7 @@ public class DBEncExample {
 
 		
 		//decrypt
-		String url = "H/1qcufpwG1ORg/D68kmauZ4oiPqRMvuqBfkCGjYLGhpTRd9w7S5aFuS+kv4CEdK3lIMHsZu/jbXTrON97+RnofRZbrZn1PoE1LzxJahnnAKLDll1XGXwMNNjLOR1/zpC2lM7AO7p62oRumpuj8Bwe3ArP4I8Q/gT5ci66T5/9QLrUxeq/dp04XLLkGqdBw++dk3ULXPxCWgRItqPSIPBpxmTtxS2ZUulMOdR+f+dSA/+gzqxHk1HP78p6bsoJ7AxWLiW1SdvNo=";
+		String url = "JlK6PLrdJkPmnrWCZOd86jnearyFMsJcrpuV13TWOYHUUJU13aJwv5CL39jR1eJRRek453UrYVimAu/vP2AvsiDmg0GESwR7DZFPEFgbgzCVrN8BdthQDyiTEdNzWpQTxwKc7hQRVTSBw3+8KgPrd8s2z55yq5Zyb+fKQxNWRG8+D9jCOH/yOS6Rz/V1Z1+xaV3dNs9mKb6Bj2WufiQ9ha67gAH04h+8L1SuFupM8b2Unh8K4jSLgyRrpFmQWi+A1ceyrc9pKxQ=";
 		String dec = pbeEnc.decrypt(url);
 		System.out.println("dec:"+dec);
 		

@@ -12,6 +12,19 @@
 			<artifactId>jasypt-spring3</artifactId>
 			<version>1.9.2</version>
 		</dependency>
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>javax.servlet-api</artifactId>
+			<version>3.1.0</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+		    <groupId>org.projectlombok</groupId>
+		    <artifactId>lombok</artifactId>
+		    <version>1.18.4</version>
+		    <scope>provided</scope>
+		</dependency>		
+		
 	</dependencies>
   
   <build>

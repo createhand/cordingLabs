@@ -215,64 +215,6 @@ public class cordingLabs {
     	return query;
     }
 	
-	public static byte[] mapToByte(TAData map) throws Exception {
-		byte[] rtn = null;
-		
-		//read element from cache
-//		ElementInfo[] element = new ElementInfo[elementCnt];
-		
-		//�쟾臾명빆紐⑹닔
-		int elementCnt = 5;
-		
-		MapMessageTransform msgTrans = new MapMessageTransform();
-		ElementInfo[] element = new ElementInfo[elementCnt];
-		ElementInfo info = null;
-		
-		//�쟾臾명빆紐⑸퀎 �꽭�똿
-		info = new ElementInfo("USER_ID", 10, 1);
-		element[0] = info;
-		
-		info = new ElementInfo("TRX_AMT", 10, 3);
-		element[1] = info;
-		
-		info = new ElementInfo("TRX_DT", 10, 1);
-		element[2] = info;
-		
-		ElementInfo[] arryEl = new ElementInfo[2];
-		arryEl[0] = new ElementInfo("NO", 10, 3);
-		arryEl[1] = new ElementInfo("NAME", 5, 1);
-		info = new ElementInfo("TRX_LIST", 2, 7, arryEl, 2);
-		element[3] = info;
-		
-		arryEl = new ElementInfo[2];
-		arryEl[0] = new ElementInfo("ET_NO", 3, 3);
-		arryEl[1] = new ElementInfo("ET_NM", 5, 1);
-		info = new ElementInfo("ETC_LIST", 1, 7, arryEl, 2);
-		element[4] = info;
-		
-		
-		rtn = msgTrans.toByteArray(element, map);
-		return rtn;
-	}
-	
-	public static TAData byteToMap(byte[] req) throws Exception {
-		
-//		String msgTxt = "createhand0000011500"+DateUtil.getToday()+"0000000001MYNAM0000000098KIMNA999PARKS";
-		String msgDef = "USER_ID@10@1;TRX_AMT@10@3;TRX_DT@14@1;TRX_LIST@2@7&NO#10#3&NAME#5#1;ETC_LIST@1@7&ET_NO#3#3&ET_NM#5#1";
-		//String msgDef = "USER_ID@10@1;TRX_AMT@10@3;TRX_DT@14@1";
-		
-		String[] params = msgDef.split(";");
-		
-		ElementInfo[] elements = new ElementInfo[params.length];
-		setElement(elements, params, "@");
-		
-		MapMessageTransform msgTrans = new MapMessageTransform();
-		TAData rtn = new TAData(msgTrans.parse(req, elements));
-		
-		List<TAData> list = (List<TAData>)rtn.get("TRX_LIST");
-		
-		return rtn;
-	}
 	
 	public static TAData jsonToMap(String req) throws Exception {
 		TAData rtn = new TAData();
