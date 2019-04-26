@@ -16,21 +16,19 @@ public class DBEncExample {
 		
 //		String dbScheme = "glndb_blc";
 //		String dbUser = "glnuser_blc";
+//		String dbScheme = "glndb_blckoexkr";
+//		String dbUser = "glnuser_blckoexkr";
 //		String dbScheme = "glndb_member";
 //		String dbUser = "glnuser_member";
-//		String dbScheme = "glndb_batch";
-//		String dbUser = "glnuser_batch";
 //		String dbScheme = "glndb_gcoin";
 //		String dbUser = "glnuser_gcoin";
-//		String dbScheme = "glndb_main";
-//		String dbUser = "glnuser_main";
 //		String dbScheme = "glndb_payment";
 //		String dbUser = "glnuser_payment";
-//		String dbScheme = "glndb_portal";
-//		String dbUser = "glnuser_portal";
-		String dbScheme = "glndb_settlement";
-		String dbUser = "glnuser_settlement";
-		String dbPwd = "Gln1234!";
+		String dbScheme = "glndb_portal";
+		String dbUser = "glnuser_portal";
+//		String dbScheme = "glndb_settlement";
+//		String dbUser = "glnuser_settlement";
+		String dbPwd = "rjrlRkwl0!A";
 		
 		
 //		String dbScheme = "glndb_common";
@@ -40,24 +38,19 @@ public class DBEncExample {
 		boolean common = true;
 		
 		
-		String masterPubIp = "172.16.13.38";
-		String slavePubIp = "172.16.13.38";
+		String masterPubIp = "172.16.23.38";
+		String slavePubIp = "172.16.23.38";
 		
 		String masterPort = "33060";
 		String slavePort = "33060";
 		
-		//�븫�샇�솕 �븷 �궡�슜(master DB)
 		String masterDbPubUrl = "jdbc:mysql://"+masterPubIp+":"+masterPort+"/"+dbScheme+"?autoCommit=true&autoReconnect=true&useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=false&serverTimezone=GMT";
-		//�븫�샇�솕 �븷 �궡�슜(slave DB)
 		String slaveDbPubUrl = "jdbc:mysql://"+slavePubIp+":"+slavePort+"/"+dbScheme+"?autoCommit=true&autoReconnect=true&useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=false&serverTimezone=GMT";
 		
 		StandardPBEStringEncryptor pbeEnc = new StandardPBEStringEncryptor();
-		//�븣怨좊━利�
 		pbeEnc.setAlgorithm(ALGORITHM);
-		//�븫�샇�솕 �궎
 		pbeEnc.setPassword(ENC_PASSWORD);
 		
-		//�븫�샇�솕 �븳 �궡�슜(master DB)
 		System.out.println("plain(" + masterDbPubUrl + ")");
 		System.out.println("");
 		System.out.println("===================================================================");
@@ -78,7 +71,7 @@ public class DBEncExample {
 		StringBuilder DBUrl = new StringBuilder();
 		DBUrl.append("################################################################################");
 		DBUrl.append(System.getProperty("line.separator"));
-		DBUrl.append("# "+dbUser+" master JDBC Definetion");
+		DBUrl.append("# "+dbUser+" JDBC Definetion");
 		DBUrl.append(System.getProperty("line.separator"));
 		DBUrl.append("################################################################################");
 		DBUrl.append(System.getProperty("line.separator"));
@@ -177,12 +170,12 @@ public class DBEncExample {
 	    writer.write(DBUrl.toString());
 	    writer.close();
 		
-		System.out.println(DBUrl.toString());
+//		System.out.println(DBUrl.toString());
 		
 
 		
 		//decrypt
-		String url = "JlK6PLrdJkPmnrWCZOd86jnearyFMsJcrpuV13TWOYHUUJU13aJwv5CL39jR1eJRRek453UrYVimAu/vP2AvsiDmg0GESwR7DZFPEFgbgzCVrN8BdthQDyiTEdNzWpQTxwKc7hQRVTSBw3+8KgPrd8s2z55yq5Zyb+fKQxNWRG8+D9jCOH/yOS6Rz/V1Z1+xaV3dNs9mKb6Bj2WufiQ9ha67gAH04h+8L1SuFupM8b2Unh8K4jSLgyRrpFmQWi+A1ceyrc9pKxQ=";
+		String url = "iGhOTafBID9SkUxoRFh+BI17sos/pmZW";
 		String dec = pbeEnc.decrypt(url);
 		System.out.println("dec:"+dec);
 		

@@ -6,6 +6,11 @@
   
   
 	<dependencies>
+		<dependency>
+		    <groupId>com.squareup.okhttp3</groupId>
+		    <artifactId>okhttp</artifactId>
+		    <version>3.14.1</version>
+		</dependency>
 		<!-- jasypt for encrypt property -->
 		<dependency>
 			<groupId>org.jasypt</groupId>
