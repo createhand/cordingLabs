@@ -28,6 +28,7 @@ import java.util.concurrent.locks.ReentrantLock;
 
 import org.apache.commons.lang.SerializationUtils;
 import org.apache.commons.lang.math.RandomUtils;
+import org.apache.commons.lang3.RandomStringUtils;
 import org.codehaus.jackson.JsonGenerationException;
 import org.codehaus.jackson.JsonParseException;
 import org.codehaus.jackson.map.JsonMappingException;
@@ -46,9 +47,12 @@ public class cordingLabs {
 	}
 	
 	public static void main(String args[]) throws Exception {
-		String sessionId = "S09FWEtSOkMxMzUxQzlGQ0U3NDg3ODg5N0NCMzhEMzE0OUFEQjRFRDc2MTY0NzRBQUEwQjE5QTg2M0JBQTFFMTBGMTY2NDY=";
-		String value = new String(Base64.getDecoder().decode(sessionId));
-		System.out.println("value:"+value);
+//		String sessionId = "S09FWEtSOkMxMzUxQzlGQ0U3NDg3ODg5N0NCMzhEMzE0OUFEQjRFRDc2MTY0NzRBQUEwQjE5QTg2M0JBQTFFMTBGMTY2NDY=";
+//		String value = new String(Base64.getDecoder().decode(sessionId));
+//		System.out.println("value:"+value);
+		for(int i=0;i<1000;i++) {
+			System.out.println(RandomStringUtils.randomNumeric(6));
+		}
 	}
 	
 	
