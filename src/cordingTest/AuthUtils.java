@@ -290,12 +290,12 @@ public class AuthUtils {
 		// set authorization
 		//#####################################
 		//global cache(redis)에서 authId로 조회한 salt
-		String salt = "6A465031714F6344763656474D43383834623351395752335143726374507836";
+		String salt = "51637266396143464B707758724C7A774843336248474970634E644B624F3633";
 		String id = "KOEXKR";
 		TAData reqHeader = new TAData();
 		setExternalAuthorization(id, salt, reqHeader);
-//		log.debug("Authorization:"+reqHeader.getString("Authorization"));
-//		log.debug("Timestamp:"+reqHeader.getString("Timestamp"));
+		log.debug("Authorization:"+reqHeader.getString("Authorization"));
+		log.debug("Timestamp:"+reqHeader.getString("Timestamp"));
 		
 		//#####################################
 		// check authorization
