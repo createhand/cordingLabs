@@ -12,9 +12,10 @@ import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.Mac;
 import javax.crypto.NoSuchPaddingException;
 import javax.crypto.spec.SecretKeySpec;
-import javax.xml.bind.DatatypeConverter;
 
+import org.apache.commons.codec.DecoderException;
 import org.apache.commons.codec.binary.Base64;
+import org.apache.commons.codec.binary.Hex;
 
 public class EncUtils {
 
@@ -51,10 +52,10 @@ public class EncUtils {
 	
 	public static class HexaString {
 		public static String encode(byte[] in)	{
-			return DatatypeConverter.printHexBinary(in);
+			return Hex.encodeHexString(in);
 		}
-		public static byte[] decode(String in)	{
-			return DatatypeConverter.parseHexBinary(in);
+		public static byte[] decode(String in) throws DecoderException	{
+			return Hex.decodeHex(in);
 		}
 	}
 	
@@ -77,7 +78,7 @@ public class EncUtils {
 		final private	static String OPMODE = "AES/CBC/PKCS5PADDING";
 		
 		public static byte[] encrypt(byte[] in, String key)
-		throws NoSuchAlgorithmException, InvalidKeyException, IllegalBlockSizeException, NoSuchPaddingException, InvalidAlgorithmParameterException, BadPaddingException
+		throws NoSuchAlgorithmException, InvalidKeyException, IllegalBlockSizeException, NoSuchPaddingException, InvalidAlgorithmParameterException, BadPaddingException, DecoderException
 		{
 			SecretKeySpec		keySpec = new SecretKeySpec(HexaString.decode(key), ALGORITHM);
 			Cipher	cipher = Cipher.getInstance(OPMODE);
@@ -86,7 +87,7 @@ public class EncUtils {
 			return cipher.doFinal(in);
 		}
 		public static byte[] decrypt(byte[] in, String key)
-		throws NoSuchAlgorithmException, InvalidKeyException, IllegalBlockSizeException, NoSuchPaddingException, InvalidAlgorithmParameterException, BadPaddingException
+		throws NoSuchAlgorithmException, InvalidKeyException, IllegalBlockSizeException, NoSuchPaddingException, InvalidAlgorithmParameterException, BadPaddingException, DecoderException
 		{
 			SecretKeySpec		keySpec = new SecretKeySpec(HexaString.decode(key), ALGORITHM);
 			Cipher	cipher = Cipher.getInstance(OPMODE);
@@ -100,7 +101,7 @@ public class EncUtils {
 		final private static String ALGORITHM = "HmacSHA256";
 		
 		public static String generate(String in, String apikey)	
-		throws NoSuchAlgorithmException, InvalidKeyException, UnsupportedEncodingException
+		throws NoSuchAlgorithmException, InvalidKeyException, UnsupportedEncodingException, DecoderException
 		{
 			byte[]	key = HexaString.decode(apikey);
 			SecretKeySpec keySpec = new SecretKeySpec(key, ALGORITHM);

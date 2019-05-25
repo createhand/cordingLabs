@@ -26,6 +26,7 @@ import java.util.TimeZone;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.locks.ReentrantLock;
 
+import org.apache.commons.codec.DecoderException;
 import org.apache.commons.lang.SerializationUtils;
 import org.apache.commons.lang.math.RandomUtils;
 import org.apache.commons.lang3.RandomStringUtils;
@@ -362,7 +363,7 @@ public class cordingLabs {
 			//header 5.
 			//set httpheader name : Content-Type = application/json
 			
-		} catch (InvalidKeyException | NoSuchAlgorithmException | UnsupportedEncodingException e) {
+		} catch (InvalidKeyException | NoSuchAlgorithmException | UnsupportedEncodingException | DecoderException e) {
 			e.printStackTrace();
 		}
 	}

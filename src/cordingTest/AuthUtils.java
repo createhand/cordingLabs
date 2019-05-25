@@ -7,6 +7,7 @@ import java.security.NoSuchAlgorithmException;
 import java.util.Base64;
 import java.util.StringTokenizer;
 
+import org.apache.commons.codec.DecoderException;
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.lang3.RandomStringUtils;
 
@@ -133,7 +134,7 @@ public class AuthUtils {
 		String hashValue = null;
 		try {
 			hashValue = HMACSHA256.generate(timestamp, salt);
-		} catch (InvalidKeyException | NoSuchAlgorithmException | UnsupportedEncodingException e) {
+		} catch (InvalidKeyException | NoSuchAlgorithmException | UnsupportedEncodingException | DecoderException e) {
 			e.printStackTrace();
 		}
 		

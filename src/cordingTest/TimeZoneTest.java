@@ -7,9 +7,12 @@ import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.ZoneOffset;
 import java.time.ZonedDateTime;
-import java.util.*;
-
-import javax.annotation.Resource;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
+import java.util.List;
+import java.util.Properties;
+import java.util.TimeZone;
 
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.lang.time.DateFormatUtils;
@@ -44,7 +47,6 @@ public class TimeZoneTest {
 
     }
     
-	@Resource(name="config")
 	public void setPrivateProperties(Properties privateProperties) {
 		prop = privateProperties;
 	}

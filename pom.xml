@@ -14,6 +14,12 @@
 		    <artifactId>okhttp</artifactId>
 		    <version>3.14.1</version>
 		</dependency>
+		<!-- https://mvnrepository.com/artifact/commons-codec/commons-codec -->
+		<dependency>
+		    <groupId>commons-codec</groupId>
+		    <artifactId>commons-codec</artifactId>
+		    <version>1.12</version>
+		</dependency>
 		<!-- jasypt for encrypt property -->
 		<dependency>
 			<groupId>org.jasypt</groupId>
