@@ -5,21 +5,20 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
-import java.util.Calendar;
-import java.util.TimeZone;
 
-public class fileWrite {
+public class FileWrite {
 	
 	public static void main(String args[]) {
+		String path = "D:\\workspace\\git\\hmf-svr-core-pt-ibs\\src\\main\\webapp\\WEB-INF\\views\\com_test";
 		fileWrite();
 	}
 	
 	public static void fileWrite() {
+		
 		try {
 			//timezone ID
 			ZoneId zoneId = ZoneId.of("GMT");
@@ -71,4 +70,5 @@ public class fileWrite {
 	        System.exit(1);
 	    }
 	}
+	
 }
