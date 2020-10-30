@@ -69,22 +69,25 @@ public class cordingTest {
 	}
 	
 	public static void main(String args[]) {
-		try {
-			for(int i=0;i<10000;i++) {
-				requestAPI();
-				requestAPI();
-				requestAPI();
-				requestAPI();
-				requestAPI();
-				requestAPI();
-				requestAPI();
-				requestAPI();
-				requestAPI();
-				requestAPI();
-			}
-		} catch(Exception e) {
-			e.printStackTrace();
-		}
+		
+		System.out.println(RandomUtils.nextInt(100000000));
+		
+//		try {
+//			for(int i=0;i<10000;i++) {
+//				requestAPI();
+//				requestAPI();
+//				requestAPI();
+//				requestAPI();
+//				requestAPI();
+//				requestAPI();
+//				requestAPI();
+//				requestAPI();
+//				requestAPI();
+//				requestAPI();
+//			}
+//		} catch(Exception e) {
+//			e.printStackTrace();
+//		}
 	}
 	
 	public static int calculateManAge(String birth){

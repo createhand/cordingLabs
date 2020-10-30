@@ -9,27 +9,16 @@ import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.security.InvalidKeyException;
+import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-import java.security.SecureRandom;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.time.LocalDateTime;
-import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Base64;
-import java.util.Calendar;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Locale;
-import java.util.Map;
-import java.util.TimeZone;
 import java.util.concurrent.atomic.AtomicInteger;
-import java.util.concurrent.locks.ReentrantLock;
 
 import org.apache.commons.codec.DecoderException;
 import org.apache.commons.lang.SerializationUtils;
 import org.apache.commons.lang.math.RandomUtils;
-import org.apache.commons.lang3.RandomStringUtils;
 import org.codehaus.jackson.JsonGenerationException;
 import org.codehaus.jackson.JsonParseException;
 import org.codehaus.jackson.map.JsonMappingException;
@@ -47,15 +36,95 @@ public class cordingLabs {
 		return str+counter.updateAndGet(n -> (n >= 60) ? 1 : n + 1);
 	}
 	
-	public static void main(String args[]) throws Exception {
-		String token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImtpZCI6Ik0wRkNkVPQSJ9.eyJwaWIiOnsibWFzdGVyX2FwcF9pZCI6IkpiOEU0UGxiaGRCMmFOWURRMEE4NFVyQVQ0TmRqRjA4Iiwic2Vzc2lvbl9pZCI6IjI3MTQ0WHhYX2NkYzVkNzE0LWQ1MGEtNDAzMy1lOGM2LWNjMGZiNDU5Njc3NCIsImFsbG93X2F1dG9fb9naW4iOiJ0cnVlIiwiYXBjIjoiOSIsImN0YyI6IkQifSwiaXNzIjoiaHR0cHM6Ly9hdXRoLmludC5hY2vdW50cy5kb3dqb25lcy5jb20vIiwic3ViIjoiYXV0aDB8Vk5KUUVQSlYzUUJEMk5QWSIsImF1ZCI6IkpiOEU0UGxiaGRCMmFOWURRMEE4NFVyQVQ0TmRqRjA4IiiZXhwIjoxNTAzODQ2NTU3LCJpYXQiOjE1MDM1ODczNTcsImF6cCI6IkpiOEU0UGxiaGRCMmFOWURRMEE4NFVyQVQ0TmRqRjA4In0.AdGy4iNtRnB1sEUOdx8iqWaCiJS0MkGOrRCt6SsDl3HyxLa5SoNczb2rCu9x7fYbyDnjKUn0ZkLHDS_DDyio6JrJ5qXF9p07IGhKhouDW1ouX6GEZ_LyTsJ7gFK0830N_VjBMFJcDiTOQ89Pz8QwaNlrkKgjq11bEVOxSsiWFzjDAhB23fUiIN6Fn8ABezySZhDzWOM87H7fG2t8gOlC0aPRwAHGZvyrUopApyK2G7v6ODyvD6S5ghqAmqB_BsgAyr4urvGg2euH5MNCCepclK09BMgb9KqoNoFQe0Q34H9wzjFlu1FPWP-GZm3cgJZYqhx7G4ih12FVOMA";
-		System.out.println(new String(Base64.getDecoder().decode(token)));
-//		String sessionId = "S09FWEtSOkMxMzUxQzlGQ0U3NDg3ODg5N0NCMzhEMzE0OUFEQjRFRDc2MTY0NzRBQUEwQjE5QTg2M0JBQTFFMTBGMTY2NDY=";
-//		String value = new String(Base64.getDecoder().decode(sessionId));
-//		System.out.println("value:"+value);
-		for(int i=0;i<1000;i++) {
-			System.out.println(RandomStringUtils.randomNumeric(6));
+	public static boolean caseTest(String status) {
+		switch (status) {
+		case "30" :
+			return false;
+		default :
+			return true;
 		}
+	}
+	
+	public static String getSHA256(String src) {
+		String SHA = "";
+		try{			
+			MessageDigest md = MessageDigest.getInstance("SHA-256");
+			md.update(src.getBytes());
+
+			byte[] mdResult = md.digest();
+
+			StringBuffer sb = new StringBuffer();
+			for(int i=0; i < mdResult.length; i++){
+				sb.append(Integer.toString((mdResult[i]&0xff) + 0x100, 16).substring(1));
+			}
+			SHA = sb.toString();
+			
+		} catch(Exception e) {
+			return src;			
+		}	
+		return SHA;
+	}
+	
+	public static void main(String[] args) {
+		
+		String[] foodlist = getFoodList();
+		for(int i=0;i<foodlist.length;i++) {
+			System.out.println("["+(i+1)+"]"+foodlist[i]);
+		}
+		
+		String srt = "상호저축은행#067*1*3*215302#김*수#1원#"; 
+		try {
+			srt = new String(srt.getBytes("UTF-8"), "EUC-KR");
+		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
+		}
+		System.out.println(srt);
+		System.out.println(getSHA256(srt).toUpperCase());
+	}
+	
+	public static String[] getFoodList() {
+		return new String[]{
+		"남도맛집", 
+		"호프집 돈까스",
+		"오징어풍경",
+		"향설주랑 짜파게티",
+		"장독대 김치찌개",
+		"장칼국수",
+		"광화문수제비",
+		"쿵푸마라탕",
+		"북어국집",
+		"한스델리",
+		"이화수육개장",
+		"보름 떡볶이",
+		"맷돌로만",
+		"맥도날드",
+		"아오지라멘",
+		"청키면가",
+		"피슈마라탕",
+		"짬뽕지존",
+		"종로분식",
+		"미진 돈까스",
+		"종로수제비",
+		"바스버거 수제버거",
+		"채선당",
+		"장혁민부대찌개",
+		"노브랜드버거",
+		"북어국집",
+		"우육면관",
+		"죠스떡볶이",
+		"한식뷔페1",
+		"장군보쌈",
+		"다동화로",
+		"코코이찌방 카레",
+		"한식뷔페2",
+		"고랭지김치찌개",
+		"후니도니 돈까스",
+		"아비꼬 카레",
+		"맘스터치",
+		"시래기집",
+		"싸이공 쌀국수",
+		"샤오바오우육면"
+		};
 	}
 	
 	
